@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-from scapy.all import sniff, wrpcap, IP
+from scapy.all import sniff, wrpcap, IP, TCP, Raw
 import sys
 import time
 import datetime
 
 def formatear_hora(timestamp):
-    """Convierte timestamp Unix a formato legible"""
     try:
         dt = datetime.datetime.fromtimestamp(timestamp)
         return dt.strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
@@ -22,65 +21,35 @@ archivo_pcap = sys.argv[3]
 archivo_txt = sys.argv[4]
 victim_ip = sys.argv[5] if len(sys.argv) > 5 else ""
 
-print(f"Capturando en {iface} durante {tiempo}s...")
+# Filtro específico para Telnet (Puerto 23)
+# Si hay IP de víctima, filtramos por esa IP AND puerto 23
+filtro_bpf = "tcp port 23"
 if victim_ip:
-    print(f"🎯 Modo ESPECÍFICO - Filtrando por IP: {victim_ip}")
-else:
-    print(f"📡 Modo GENERAL - Capturando todo el tráfico")
+    filtro_bpf += f" and host {victim_ip}"
+
 paquetes = []
 
-def filtrar_paquete(pkt):
-    if not victim_ip:
-        return True
-    if IP in pkt:
-        ip = pkt[IP]
-        return victim_ip in (ip.src, ip.dst)
-    return False
+def procesar_paquete(pkt):
+    if pkt.haslayer(Raw): # Solo guardamos si trae datos (mensajes)
+        paquetes.append(pkt)
+        # Imprimir en tiempo real para ver la magia
+        try:
+            payload = pkt[Raw].load.decode('utf-8', errors='ignore')
+            if payload.strip():
+                print(f"[TELNET DATA]: {payload.strip()}")
+        except:
+            pass
 
-def guardar_paquete(pkt):
-    paquetes.append(pkt)
+print(f"🚀 Iniciando Sniffer Telnet en {iface}...")
+sniff(iface=iface, timeout=tiempo, filter=filtro_bpf, prn=procesar_paquete, store=False)
 
-sniff(iface=iface, timeout=tiempo, prn=guardar_paquete, store=False, lfilter=filtrar_paquete)
-
+# Guardar resultados
 wrpcap(archivo_pcap, paquetes)
-print(f"Guardado {len(paquetes)} paquetes en {archivo_pcap}")
 
 with open(archivo_txt, 'w', encoding='utf-8') as txt:
-    txt.write(f"CAPTURA DE TRÁFICO - {time.ctime()}\n")
-    txt.write(f"Interfaz: {iface}\n")
-    txt.write(f"Duración: {tiempo} segundos\n")
-    if victim_ip:
-        txt.write(f"🎯 Modo ESPECÍFICO - Filtro por IP: {victim_ip}\n")
-    else:
-        txt.write(f"📡 Modo GENERAL - Todo el tráfico\n")
-    txt.write(f"Total paquetes: {len(paquetes)}\n")
-    txt.write("=" * 80 + "\n\n")
-    
-    for idx, pkt in enumerate(paquetes, 1):
-        txt.write(f"Paquete #{idx}\n")
-        txt.write(f"  Hora (Unix): {pkt.time}\n")
-        txt.write(f"  Hora (local): {formatear_hora(pkt.time)}\n")
-        txt.write(f"  Resumen: {pkt.summary()}\n")
-        if pkt.haslayer('IP'):
-            ip = pkt['IP']
-            txt.write(f"  IP: {ip.src} -> {ip.dst}\n")
-        if pkt.haslayer('TCP'):
-            tcp = pkt['TCP']
-            txt.write(f"  TCP: puerto {tcp.sport} -> {tcp.dport}\n")
-        if pkt.haslayer('UDP'):
-            udp = pkt['UDP']
-            txt.write(f"  UDP: puerto {udp.sport} -> {udp.dport}\n")
-        if pkt.haslayer('Raw'):
-            raw = bytes(pkt['Raw'].load)
-            txt.write(f"  Datos HEX: {raw[:100].hex()}\n")
-            try:
-                texto = raw.decode('utf-8', errors='replace')
-                if texto.strip() and any(c.isprintable() for c in texto):
-                    txt.write(f"  Datos TXT: {texto[:200]}...\n")
-                else:
-                    txt.write(f"  Datos TXT: (datos binarios o encriptados)\n")
-            except:
-                txt.write(f"  Datos TXT: (no se pudo decodificar)\n")
-        txt.write("\n")
+    txt.write(f"--- REPORTE INTERCEPCIÓN TELNET ---\n")
+    for pkt in paquetes:
+        raw_data = pkt[Raw].load.decode('utf-8', errors='ignore')
+        txt.write(f"[{formatear_hora(pkt.time)}] {pkt[IP].src} -> {pkt[IP].dst}: {raw_data}\n")
 
-print(f"✅ Información detallada guardada en {archivo_txt}")
+print(f"\n✅ Captura finalizada. Datos en {archivo_txt}")
