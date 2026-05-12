@@ -1,0 +1,145 @@
+# Dependencias
+/node_modules
+node_modules/
+npm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
+# Archivos de datos sensibles
+.logs_db.txt
+.logs_db.*.txt
+capturas/
+*.png
+*.jpg
+*.jpeg
+*.screenshot
+
+# Archivos del sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor de código
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+.classpath
+*.sublime-project
+*.sublime-workspace
+.emacs_backup*
+
+# Archivos compilados
+*.class
+*.pyc
+*.pyo
+__pycache__/
+*.egg-info/
+dist/
+build/
+
+# Archivos de prueba y cobertura
+coverage/
+.nyc_output/
+*.lcov
+.mocharc.json
+
+# Archivos temporales
+tmp/
+temp/
+**/temp
+**/tmp
+*.tmp
+
+# Logs del sistema
+logs/
+*.log
+lerna-debug.log*
+
+# Package manager
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE específicos
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.eclipse
+.project
+.classpath
+.c9/
+*.jsproj
+*.sln
+*.sw?
+
+# OS específicos
+.AppleDouble
+.LSOverride
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.DocumentRevisions-V100
+.fseventsd
+.HistoryService
+Icon
+Zone.identifier
+
+# Credenciales y secretos
+.ssh/
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+credentials/
+
+# Archivos compilados de Python
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Directorios ignorados
+node_modules/
+.next/
+out/
+.nuxt/
+.cache/
+dist/
+.parcel-cache/
+.eslintcache/
+output/
+reports/

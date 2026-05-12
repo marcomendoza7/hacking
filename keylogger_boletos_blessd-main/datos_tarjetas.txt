@@ -1,0 +1,129 @@
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T17:54:35.760Z
+Número: 1235 6489 79
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T17:54:35.762Z
+Número: 1235 6489 798
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T17:54:35.763Z
+Número: 1235 6489 7987
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T17:54:35.763Z
+Número: 1235 6489 79878
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T17:54:35.790Z
+Número: 1235 6489 7987 89
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T17:54:36.069Z
+Número: 1235 6489 7987 897
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T17:54:36.275Z
+Número: 1235 6489 7987 8975
+========================
+
+🔴 DATOS COMPLETOS - 2026-04-30T17:54:53.378Z
+Usuario: Marco Antonio Mendoza Pérez
+Tarjeta: 1235 6489 7987 8975
+Expira: 10/29
+CVV: 564
+Email: tony@gmail.com
+────────────────────
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:16:54.815Z
+Número: 5646 5454 89
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:16:55.022Z
+Número: 5646 5454 898
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:16:55.024Z
+Número: 5646 5454 8989
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:16:55.117Z
+Número: 5646 5454 89897
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:16:55.630Z
+Número: 5646 5454 8989 72
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:16:56.238Z
+Número: 5646 5454 8989 722
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:16:56.239Z
+Número: 5646 5454 8989 7221
+========================
+
+🔴 DATOS COMPLETOS - 2026-04-30T18:17:10.706Z
+Usuario: marco antonio mendoza perez
+Tarjeta: 5646 5454 8989 7221
+Expira: 10/29
+CVV: 879
+Email: tony@gmail.com
+────────────────────
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:21:50.438Z
+Número: 4564 5487 89
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:21:50.518Z
+Número: 4564 5487 897
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:21:50.941Z
+Número: 4564 5487 8971
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:21:51.079Z
+Número: 4564 5487 89712
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:21:51.236Z
+Número: 4564 5487 8971 23
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:21:51.268Z
+Número: 4564 5487 8971 232
+========================
+
+=== TARJETA COMPLETA ===
+Fecha: 2026-04-30T18:21:51.385Z
+Número: 4564 5487 8971 2321
+========================
+
+🔴 DATOS COMPLETOS - 2026-04-30T18:22:09.350Z
+Usuario: marco antonio mendoza perez
+Tarjeta: 4564 5487 8971 2321
+Expira: 10/29
+CVV: 123
+Email: tony@gmail.com
+────────────────────
